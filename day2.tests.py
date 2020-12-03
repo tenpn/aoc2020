@@ -40,6 +40,27 @@ class TestIsCompliant(unittest.TestCase):
         pword = create_pword_data([1,3], char="a", pword="aaaa")
         res = is_compliant(pword)
         self.assertFalse(res)
+
+class TestIsCompliantDay2(unittest.TestCase):
+    def test_GIVEN_exact_pword_THEN_true(self):
+        pword = create_pword_data([1,3], char="a", pword="daa")
+        res = is_compliant_toboggan(pword)
+        self.assertTrue(res)
+
+    def test_GIVEN_char_not_in_first_slot_THEN_false(self):
+        pword = create_pword_data([1,3], char="a", pword="ccc")
+        res = is_compliant_toboggan(pword)
+        self.assertFalse(res)
+        
+    def test_GIVEN_char_only_in_second_slot_THEN_true(self):
+        pword = create_pword_data([1,3], char="a", pword="cca")
+        res = is_compliant_toboggan(pword)
+        self.assertTrue(res)
+        
+    def test_GIVEN_char_in_both_slots_THEN_false(self):
+        pword = create_pword_data([1,3], char="a", pword="aaa")
+        res = is_compliant_toboggan(pword)
+        self.assertFalse(res)
         
 if __name__ == '__main__':
     unittest.main()

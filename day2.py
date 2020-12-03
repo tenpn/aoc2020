@@ -22,10 +22,19 @@ def is_compliant(pword_data):
     (min_count, max_count) = pword_data["count"]
     return char_count >= min_count and char_count <= max_count
 
+def is_compliant_toboggan(pword_data):
+    (index1, index2) = pword_data["count"]
+    target_char = pword_data["char"]
+    match1 = pword_data["pword"][index1-1] == target_char
+    match2 = pword_data["pword"][index2-1] == target_char
+    return (match1 or match2) and (match1 != match2)
+
 if __name__ == '__main__':
     print ("first star:")
     pword_data = get_pwords()
     valid_pwords = [pword for pword in pword_data if is_compliant(pword)]
     print(len(valid_pwords))
     print ("second star:")
+    valid_toboggan_pwords = [pword for pword in pword_data if is_compliant_toboggan(pword)]
+    print(len(valid_toboggan_pwords))
     
